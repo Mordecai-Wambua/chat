@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= room %> - Chatroom</title>
+    <link rel="stylesheet" href="/chatroom.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js"
+      integrity="sha512-8ExARjWWkIllMlNzVg7JKq9RKWPlJABQUNq6YvAjE/HobctjH/NA+bSiDMDvouBVjp4Wwnf1VP1OEv7Zgjtuxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script defer src="/chatroom.js"></script>
+  </head>
+  <body>
+    <div class="chat-container">
+      <header class="chat-header">
+        <h2 id="room-name"><%= room %></h2>
+        <a href="/chat" class="leave-btn">Leave Room</a>
+      </header>
+
+      <div class="chat-box" id="chat-box">
+        <!-- Messages will be dynamically inserted here -->
+      </div>
+
+      <div class="chat-input">
+        <input
+          type="hidden"
+          name="username"
+          id="username"
+          value="<%= username %>"
+        />
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </body>
+</html>
