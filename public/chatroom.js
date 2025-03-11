@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Emit joinRoom event with the room name (and optionally, username)
   socket.emit('joinRoom', { room: roomName, username });
 
+  function time() {
+    return new Date()
+      .toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      })
+      .toLowerCase();
+  }
+
   // Function to add a message to the chat box
   function addMessage(messageData, type) {
     // If a simple string is passed, convert it into an object
@@ -19,7 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a new element for the message
     const msgDiv = document.createElement('div');
     msgDiv.classList.add('message', type);
-    msgDiv.innerHTML = `<p class="meta">${msgData.username} <span>${msgData.time}</span></p>
+    msgDiv.innerHTML = `<p class="meta">${
+      msgData.username
+    } <span>${time()}</span></p>
       <p class="text">${msgData.text}</p>`;
     chatBox.appendChild(msgDiv);
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -37,13 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Create a message object for display
       const messageData = {
         username,
-        time: new Date()
-          .toLocaleTimeString('en-US', {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-          })
-          .toLowerCase(),
+        time: time(),
         text: text,
       };
       addMessage(messageData, 'sent');
