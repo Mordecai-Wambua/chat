@@ -31,6 +31,7 @@ const __dirname = path.dirname(__filename);
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.set('trust proxy', 1);
 app.use(logger);
 app.use(sessionMiddleware);
 app.use(express.json({ limit: '16kb' }));
